@@ -1,0 +1,20 @@
+{
+  "$schema": "../../../node_modules/@microsoft/sp-module-interfaces/lib/manifestSchemas/jsonSchemas/clientSideComponentManifestSchema.json",
+
+  "id": "d097f9ab-b382-4d1c-8f75-5a1faf43b744",
+  "alias": "TicTacToeWebPart",
+  "componentType": "WebPart",
+  "version": "0.0.1",
+  "manifestVersion": 2,
+
+  "preconfiguredEntries": [{
+    "groupId": "d097f9ab-b382-4d1c-8f75-5a1faf43b744",
+    "group": { "default": "Under Development" },
+    "title": { "default": "Tic Tac Toe" },
+    "description": { "default": "React Tic Tac Toe in SPFx" },
+    "officeFabricIconFontName": "Page",
+    "properties": {
+      "description": "Tic Tac Toe"
+    }
+  }]
+}

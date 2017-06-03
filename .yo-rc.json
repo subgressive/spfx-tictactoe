@@ -1,0 +1,8 @@
+{
+  "@microsoft/generator-sharepoint": {
+    "libraryName": "tic-tac-toe",
+    "framework": "react",
+    "version": "1.0.2",
+    "libraryId": "4f428259-48a8-4f2d-912f-0987c3e0977b"
+  }
+}

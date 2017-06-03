@@ -1,0 +1,10 @@
+{
+  "solution": {
+    "name": "tic-tac-toe-client-side-solution",
+    "id": "4f428259-48a8-4f2d-912f-0987c3e0977b",
+    "version": "1.0.0.0"
+  },
+  "paths": {
+    "zippedPackage": "solution/tic-tac-toe.sppkg"
+  }
+}
