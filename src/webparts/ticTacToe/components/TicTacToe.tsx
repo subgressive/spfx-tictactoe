@@ -6,35 +6,68 @@ import { escape } from '@microsoft/sp-lodash-subset';
 export class Square extends React.Component<any, any>{
   render() {
     return (
-      <button>X</button>
+      <div className={`ms-Grid-col ms-u-sm4 ms-u-md4 ${styles.squareCont}`}
+        onClick={() => this.props.onSquareClick()}>
+        <h2>{this.props.value}</h2>
+      </div>
     );
   }
 }
 
 export class Board extends React.Component<any, any>{
-  private renderSquare(i){
-    return(
-      <Square /> 
-    );  
+  constructor() {
+    super();
+
+    var p1 = {name: "Player 1", value:"x"};
+    var p2 = {name: "Player 2", value:"o"};
+    this.state = {
+      values: Array(9),
+      player1: p1,
+      player2: p2,
+      currentPlayer: p1
+    }
+  }
+
+  handleSquareClick(id: number) {
+    let vals = this.state.values.slice();
+
+    vals[id] = this.state.currentPlayer.value;
+    this.setState({values:vals});
+
+    if (this.state.currentPlayer == this.state.player1) {
+      this.setState({currentPlayer:  this.state.player2});
+    } else {
+      this.setState({currentPlayer:  this.state.player1});
+    }
+    console.log("hey u clicked square number "+id);
+  }
+  private renderRow(startIndex: number, colCount: number) {
+
+    var col = [];
+
+    for (var i = 0; i < colCount; i++) {
+      let index = startIndex;
+      col.push(<Square key={index} 
+        onSquareClick={() => this.handleSquareClick(index)} 
+        value={this.state.values[startIndex]} />);
+      startIndex++;
+    }
+
+    return (
+      <div className="ms-Grid-row">
+        {col}
+      </div>
+    );
   }
   render() {
     return (
       <div>
-      <div className="board-row">
-        {this.renderSquare(0)}
-        {this.renderSquare(1)}
-        {this.renderSquare(3)}
-      </div>
-      <div  className="board-row">
-        {this.renderSquare(4)}
-        {this.renderSquare(5)}
-        {this.renderSquare(6)}
-      </div>
-      <div  className="board-row">
-        {this.renderSquare(7)}
-        {this.renderSquare(8)}
-        {this.renderSquare(9)}
-      </div>
+        <h3  className={styles.squareContH3}>It is {this.state.currentPlayer.name}'s turn</h3>
+        <div className={`ms-Grid ${styles.gridCont}`}>
+          {this.renderRow(0, 3)}
+          {this.renderRow(3, 3)}
+          {this.renderRow(6, 3)}
+        </div>
       </div>
     );
   }
@@ -44,7 +77,7 @@ export class Game extends React.Component<any, any>{
   render() {
     return (
       <div>
-        <h2>hello from game</h2>
+        <h2 className={styles.gridContH2}> Tic Tac Toe {this.props.name}</h2>
         <Board />
       </div>
     );
@@ -58,8 +91,8 @@ export default class TicTacToe extends React.Component<ITicTacToeProps, void> {
       <div className={styles.helloWorld}>
         <div className={styles.container}>
 
-          <Game />
-          
+          <Game name="SPFx" />
+
           {/*
           <div className={`ms-Grid-row ms-bgColor-themeDark ms-fontColor-white ${styles.row}`}>
             <div className="ms-Grid-col ms-u-lg10 ms-u-xl8 ms-u-xlPush2 ms-u-lgPush1">
